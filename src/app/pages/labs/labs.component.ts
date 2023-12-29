@@ -8,5 +8,10 @@ import { Component } from '@angular/core';
   styleUrl: './labs.component.css'
 })
 export class LabsComponent {
-
+  welcome = 'Welcome to my first app made with Angular 17';
+  tasks = [
+    'Install Angular CLI',
+    'Create project',
+    'Create components'
+  ];
 }
