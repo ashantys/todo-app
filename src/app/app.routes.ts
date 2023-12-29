@@ -11,5 +11,5 @@ export const routes: Routes = [
     {
         path: 'labs', //nombre de la ruta
         component: LabsComponent, //quien lo va reenderizar
-    },
+    }
 ];
