@@ -18,4 +18,6 @@ export class LabsComponent {
     'Create project',
     'Create components'
   ];
+  name = 'Ashanty';
+  age = 20;
 }
