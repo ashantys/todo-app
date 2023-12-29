@@ -5,7 +5,7 @@ import { LabsComponent } from './pages/labs/labs.component';
 
 export const routes: Routes = [
     {
-        path: 'home', //nombre de la ruta
+        path: '', //nombre de la ruta
         component: HomeComponent, //quien lo va reenderizar
     },
     {
