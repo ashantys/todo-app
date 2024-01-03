@@ -20,6 +20,8 @@ export class LabsComponent {
   ];
   name = 'Ashanty';
   age = 20;
+
+//Property Binding
   disabled = true;
   img = 'https://www.thesprucepets.com/thmb/23TwSeX2CndpHDFt_KUk1j3u1Bw=/2121x1414/filters:fill(auto,1)/GettyImages-135630198-5ba7d225c9e77c0050cff91b.jpg';
 
@@ -29,7 +31,12 @@ export class LabsComponent {
     avatar: 'https://www.thesprucepets.com/thmb/23TwSeX2CndpHDFt_KUk1j3u1Bw=/2121x1414/filters:fill(auto,1)/GettyImages-135630198-5ba7d225c9e77c0050cff91b.jpg'
   }
 
+  //Event binding
   clickHandler() {
     alert('Hey! you clicked me')
+  }
+
+  changeHandler(event: Event){
+    console.log(event);
   }
 }
