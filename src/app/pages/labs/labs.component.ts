@@ -13,11 +13,11 @@ import { CommonModule } from '@angular/common';
 
 export class LabsComponent {
   welcome = 'Welcome to my first app made with Angular 17';
-  tasks = [
+  tasks = signal([
     'Install Angular CLI',
     'Create project',
     'Create components'
-  ];
+  ]);
   name = signal('Ashanty');
   age = 20;
 
@@ -36,6 +36,7 @@ export class LabsComponent {
     alert('Hey! you clicked me')
   }
 
+  //Aqui tenemo el signal
   changeHandler(event: Event){
     const input = event.target as HTMLInputElement;
     const newValue = input.value;

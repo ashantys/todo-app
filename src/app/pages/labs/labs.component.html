@@ -4,7 +4,7 @@
   <h2>I'm a software developer</h2>
   <h3> {{ welcome }} </h3>  <!--- Esto es una interpolación -->
   <ul>
-    <li *ngFor="let tasks of tasks">
+    <li *ngFor="let tasks of tasks()">
         {{ tasks }}  <!--- Esto es una interpolación -->
     </li>
   </ul>
@@ -29,6 +29,12 @@
   <p>Keydown shift</p>   <!--- Event Binding keydown: solo para una tecla especifica-->
   <input type="text" [value]="person.name" (keydown.shift.t)="clickHandler()">
   <hr />
+  <ul> <!--- Directivas de control -->
+    <p>total : {{ tasks().length }}</p>
+    <li *ngFor="let tasks of tasks(); index as i">
+        {{ i }} {{ tasks }}  
+    </li>
+  </ul>
   <h1>Signals</h1>
   <input type="text" [value]="name()" (change)="changeHandler($event)">
   <p>name: {{ name() }}</p>
