@@ -22,6 +22,10 @@
   <!--- Event Binding -->
   <button (click)="clickHandler()">Please Click Here</button>
   <button (dblclick)="clickHandler()">Double Me</button>
-  <p>Change Event</p>
+  <p>Change Event</p>   <!--- Event Binding: clicks change -->
   <input type="number" [value]="person.age" (change)="changeHandler($event)">
+  <p>Keydown</p>   <!--- Event Binding keydown-->
+  <input type="text" [value]="person.name" (keydown)="keydownHandler($event)">
+  <p>Keydown shift</p>   <!--- Event Binding keydown: solo para una tecla especifica-->
+  <input type="text" [value]="person.name" (keydown.shift.t)="clickHandler()">
 </div>
