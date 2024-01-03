@@ -8,6 +8,7 @@
           placeholder="Type new todo"
           autofocus
           type="text"
+          (change)="changeHandler($event)"
         />
       </div>
     </header>
@@ -24,6 +25,7 @@
             </div>
             <input class="edit" value="Buy a unicorn" />
           </li>
+          <!--
           <li class="completed">
             <div class="view">
               <input class="toggle" type="checkbox" checked />
@@ -48,6 +50,7 @@
             </div>
             <input class="edit" value="Make dishes" />
           </li>
+          -->
         </ul>
       </section>
       <!-- This footer should be hidden by default and shown when there are todos -->

@@ -16,4 +16,15 @@ export class HomeComponent {
     'Create project',
     'Create components'
   ]);
+
+  changeHandler(event: Event){
+    const input= event.target as HTMLInputElement; //Leemos el nuevo evento tecleado
+    const newTask = input.value; //guardamos el valor ingresado
+    /*¿Cómo ingresar esa nueva tarea al Array? Hacemos un update que nos permite contener
+    las tareas anteriores y agregar las nuevas tareas. Esto con la función flecha
+    */
+    this.tasks.update((tasks) => [...tasks, newTask]);
+  }
+
+  //Eliminamos la tarea
 }
