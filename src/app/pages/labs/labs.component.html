@@ -11,7 +11,7 @@
   <hr />
   <h2>{{ 'Hola'.repeat(4) }}</h2>  <!--- Esto es una interpolación -->
   <p> This sum 10 + 3 is {{ 10 + 3 }}</p>
-  <p> Hey! My name is {{ name }} and I'm {{ age }}</p>
+  <p> Hey! My name is {{ name() }} and I'm {{ age }}</p>
   <hr />
   <!--- Property Binding -->
   <img [src]="person.avatar" alt="">
@@ -28,4 +28,8 @@
   <input type="text" [value]="person.name" (keydown)="keydownHandler($event)">
   <p>Keydown shift</p>   <!--- Event Binding keydown: solo para una tecla especifica-->
   <input type="text" [value]="person.name" (keydown.shift.t)="clickHandler()">
+  <hr />
+  <h1>Signals</h1>
+  <input type="text" [value]="name()" (change)="changeHandler($event)">
+  <p>name: {{ name() }}</p>
 </div>
