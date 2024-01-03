@@ -1,6 +1,8 @@
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { Task } from './../../models/task.model';//Importamos la interfaz
+
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -11,18 +13,35 @@ import { CommonModule } from '@angular/common';
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
-  tasks = signal([
-    'Install Angular CLI',
-    'Create project',
-    'Create components'
+  tasks = signal<Task[]>([
+    {
+      id: Date.now(),
+      title: 'Create project',
+      completed: false
+    },
+    {
+      id: Date.now(),
+      title: 'Create components',
+      completed: false
+    },
   ]);
 
+  //Controla el input
   changeHandler(event: Event){
     const input= event.target as HTMLInputElement; //Leemos el nuevo evento tecleado
     const newTask = input.value; //guardamos el valor ingresado
+    this.addTask(newTask);
+  }
+   
+  /* Agregar una tarea: Va a recibir un titulo como string, al cual se le asigna un id y un estado de acompletado*/
+  addTask(title: string){
+    const newTask ={
+      id:Date.now(),
+      title,
+      completed:false,
+    };
     /*¿Cómo ingresar esa nueva tarea al Array? Hacemos un update que nos permite contener
-    las tareas anteriores y agregar las nuevas tareas. Esto con la función flecha
-    */
+    las tareas anteriores y agregar las nuevas tareas. Esto con la función flecha*/
     this.tasks.update((tasks) => [...tasks, newTask]);
   }
 
@@ -35,4 +54,6 @@ export class HomeComponent {
     */ 
     this.tasks.update((tasks) => tasks.filter((task, position) => position !== index));
   }
+
+
 }
