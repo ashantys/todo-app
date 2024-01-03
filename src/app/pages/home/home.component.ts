@@ -27,4 +27,12 @@ export class HomeComponent {
   }
 
   //Eliminamos la tarea
+  deleteTask(index: number){
+    /* Para eliminar una tarea con la mejor practica. Debemos de traer la lista de tareas.
+    Una vez con la lista de tareas, entonces con la función flecha las filtramos por cualquier elemento
+    que no sea el index que hemos llamado por parametro . Es en donde aplicamos la lógica: 
+    si la posicion es diferente a la que nos envian por parametro
+    */ 
+    this.tasks.update((tasks) => tasks.filter((task, position) => position !== index));
+  }
 }
