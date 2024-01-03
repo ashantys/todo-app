@@ -20,4 +20,13 @@ export class LabsComponent {
   ];
   name = 'Ashanty';
   age = 20;
+  disabled = true;
+  img = 'https://www.thesprucepets.com/thmb/23TwSeX2CndpHDFt_KUk1j3u1Bw=/2121x1414/filters:fill(auto,1)/GettyImages-135630198-5ba7d225c9e77c0050cff91b.jpg';
+
+  person = {
+    name: 'Ashanty',
+    age: '20',
+    avatar: 'https://www.thesprucepets.com/thmb/23TwSeX2CndpHDFt_KUk1j3u1Bw=/2121x1414/filters:fill(auto,1)/GettyImages-135630198-5ba7d225c9e77c0050cff91b.jpg'
+  }
+
 }

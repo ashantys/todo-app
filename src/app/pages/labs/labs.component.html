@@ -10,3 +10,9 @@
 <h2>{{ 'Hola'.repeat(4) }}</h2>  <!--- Esto es una interpolación -->
 <p> This sum 10 + 3 is {{ 10 + 3 }}</p>
 <p> Hey! My name is {{ name }} and I'm {{ age }}</p>
+<hr />
+<!--- Property Binding -->
+<img [src]="person.avatar" alt="">
+<input type="text" [value]="person.age">
+<button [disabled]="disabled">Click me</button>
+<p>person : {{person.name}}</p>
