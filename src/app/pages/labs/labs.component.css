@@ -20,3 +20,9 @@ button{
     cursor: pointer;
     border-radius: 10px;
 }
+
+.box {
+    height: 10px;
+    display: block;
+    background-color: #ad4caf;
+}
