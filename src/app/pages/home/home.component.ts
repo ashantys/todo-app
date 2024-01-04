@@ -41,9 +41,11 @@ export class HomeComponent {
   //Controla el input
   changeHandler(){
     if(this.newTaskCtrl.valid){//Si es valido lo capturamos
-      const value = this.newTaskCtrl.value;
-      this.addTask(value);
-      this.newTaskCtrl.setValue('') //Vamos a limpiar el campo de escritura
+      const value = this.newTaskCtrl.value.trim(); //trim, nos quita espacios al inicio y al final de un string
+      if(value !== '' ){// si el valor es diferente de vacio, permitimos la creacion de la tarea
+        this.addTask(value);
+        this.newTaskCtrl.setValue('') //Vamos a limpiar el campo de escritura
+      }
     }
   }
    
