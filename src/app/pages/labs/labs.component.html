@@ -14,20 +14,20 @@
   <p> Hey! My name is {{ name() }} and I'm {{ age }}</p>
   <hr />
   <!--- Property Binding -->
-  <img [src]="person.avatar" alt="">
-  <input type="number" [value]="person.age">
+  <img [src]="person().avatar" alt="">
+  <input type="number" [value]="person().age">
   <button [disabled]="disabled">Click me</button>
-  <p>person : {{person.name}}</p>
+  <p>person : {{person().name}}</p>
   <hr />
   <!--- Event Binding -->
   <button (click)="clickHandler()">Please Click Here</button>
   <button (dblclick)="clickHandler()">Double Me</button>
   <p>Change Event</p>   <!--- Event Binding: clicks change -->
-  <input type="number" [value]="person.age" (change)="changeHandler($event)">
+  <input type="number" [value]="person().age" (change)="changeHandler($event)">
   <p>Keydown</p>   <!--- Event Binding keydown-->
-  <input type="text" [value]="person.name" (keydown)="keydownHandler($event)">
+  <input type="text" [value]="person().name" (keydown)="keydownHandler($event)">
   <p>Keydown shift</p>   <!--- Event Binding keydown: solo para una tecla especifica-->
-  <input type="text" [value]="person.name" (keydown.shift.t)="clickHandler()">
+  <input type="text" [value]="person().name" (keydown.shift.t)="clickHandler()">
   <hr />
   <ul> <!--- Directivas de control -->
     <p>total : {{ tasks().length }}</p>
@@ -38,4 +38,18 @@
   <h1>Signals</h1>
   <input type="text" [value]="name()" (change)="changeHandler($event)">
   <p>name: {{ name() }}</p>
+  <hr />
+  <div *ngIf="1 !== 1">
+    My content
+  </div>
+  <div *ngIf="name() === 'Ashanty'">
+    Hello there, my name is Ashanty
+  </div>
+  <input type="number" [value]="person().age" (change)="changeAge($event)">
+  <div *ngIf="person().name === 'Ashanty' && person().age > 18; else elseBlock">
+    My name is Ashanty, and I'm an adult
+  </div>
+  <ng-template #elseBlock>
+    My name is Ashanty, and I'm a kid
+  </ng-template>
 </div>
