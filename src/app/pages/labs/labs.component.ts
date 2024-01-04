@@ -59,4 +59,16 @@ export class LabsComponent {
       }
     });
   }
+
+    //Cambiar la edad de forma dinamica
+    changeName(event: Event){
+      const input = event.target as HTMLInputElement; //leer el input
+      const newValue = input.value;
+      this.person.update(prevState => {
+        return{
+          ...prevState,
+          name: newValue
+        }
+      });
+    }
 }
