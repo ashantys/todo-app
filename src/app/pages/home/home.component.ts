@@ -55,5 +55,19 @@ export class HomeComponent {
     this.tasks.update((tasks) => tasks.filter((task, position) => position !== index));
   }
 
+//Actualizar la tarea
+ updateTask(index: number){
+    this.tasks.update((tasks) => { //recibimos el estado anterior
+      return tasks.map((task, position) => { // iteramos el array
+        if (position === index){ //si, la posicion es igual a la de el parametro
+          return{// se modifica el estado de la tarea, dependiendo a su estado anterior
+            ...task, 
+            completed: !task.completed
+          }
+        }
+        return task;
+      }) //map, recorre todos los elementos de el array
+    })
+  }
 
 }
