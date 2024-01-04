@@ -1,5 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { Task } from './../../models/task.model';//Importamos la interfaz
 
@@ -7,7 +8,8 @@ import { Task } from './../../models/task.model';//Importamos la interfaz
   selector: 'app-home',
   standalone: true,
   imports: [
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
@@ -27,11 +29,22 @@ export class HomeComponent {
     },
   ]);
 
+  //controlador para  crear las nuevas tareas
+  newTaskCtrl= new FormControl('',{
+    //validaciones
+    nonNullable:true, // No acepte valores nulos
+    validators: [
+      Validators.required,
+    ]
+  });
+
   //Controla el input
-  changeHandler(event: Event){
-    const input= event.target as HTMLInputElement; //Leemos el nuevo evento tecleado
-    const newTask = input.value; //guardamos el valor ingresado
-    this.addTask(newTask);
+  changeHandler(){
+    if(this.newTaskCtrl.valid){//Si es valido lo capturamos
+      const value = this.newTaskCtrl.value;
+      this.addTask(value);
+      this.newTaskCtrl.setValue('') //Vamos a limpiar el campo de escritura
+    }
   }
    
   /* Agregar una tarea: Va a recibir un titulo como string, al cual se le asigna un id y un estado de acompletado*/
