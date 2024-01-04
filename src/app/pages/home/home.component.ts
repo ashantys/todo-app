@@ -13,6 +13,7 @@ import { Task } from './../../models/task.model';//Importamos la interfaz
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
+
   tasks = signal<Task[]>([
     {
       id: Date.now(),
