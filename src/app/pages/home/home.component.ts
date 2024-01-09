@@ -86,4 +86,39 @@ export class HomeComponent {
     })
   }
 
+  //Activar la tarea en modo edicion
+  updateTaskEditingMode(index:number){
+    this.tasks.update((prevState) => { //recibimos el estado anterior
+      return prevState.map((task, position) => { // iteramos el array
+        if (position === index){ //si, la posicion es igual a la de el parametro
+          return{// se modifica el estado de la tarea, dependiendo a su estado anterior
+            ...task, 
+            editing: true
+          }
+        }
+        return {
+          ...task,
+          editing:false
+        };
+      })
+    })
+  }
+
+    //Actualizar el texto editado
+    updateTaskText(index:number, event: Event){
+      //leemos el input para conocer el titulo de la tarea
+      const input = event.target as  HTMLInputElement;
+      this.tasks.update((prevState) => { //recibimos el estado anterior
+        return prevState.map((task, position) => { // iteramos el array
+          if (position === index){ //si, la posicion es igual a la de el parametro
+            return{// se modifica el texto
+              ...task, 
+              title: input.value, // Se le asigna el nuevo valor
+              editing: false //sacarlo del modo edicion
+            }
+          }
+          return task;
+        })
+      })
+    }
 }
