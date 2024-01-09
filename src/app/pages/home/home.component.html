@@ -13,6 +13,7 @@
         />
       </div>
     </header>
+    <h1>{{ filter() }}</h1>
     <div class="container todoapp-wrapper">
       <!-- This section should be hidden by default and shown when there are todos -->
       <section class="main">
@@ -70,13 +71,13 @@
         <!-- Remove this if you don't implement routing -->
         <ul class="filters">
           <li>
-            <a click="changeFilter('all')" class="selected">All</a>
+            <a (click)="changeFilter('all')" class="selected">All</a>
           </li>
           <li>
-            <a click="changeFilter('pending')">Pending</a>
+            <a (click)="changeFilter('pending')">Pending</a>
           </li>
           <li>
-            <a click="changeFilter('completed')">Completed</a>
+            <a (click)="changeFilter('completed')">Completed</a>
           </li>
         </ul>
         <!-- Hidden if no completed items are left ↓ -->
