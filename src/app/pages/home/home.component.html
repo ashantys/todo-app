@@ -13,7 +13,6 @@
         />
       </div>
     </header>
-    <h1>{{ filter() }}</h1>
     <div class="container todoapp-wrapper">
       <!-- This section should be hidden by default and shown when there are todos -->
       <section class="main">
@@ -21,7 +20,7 @@
           <!-- Directiva de control -->
           <li 
             (dblclick)="updateTaskEditingMode(i)"
-            *ngFor="let task of tasks(); index as i"
+            *ngFor="let task of tasksByFilter(); index as i"
             [class.editing]="task.editing"
             [class.completed]="task.completed">
             <div class="view">

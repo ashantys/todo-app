@@ -1,6 +1,7 @@
-import { Component, signal } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+
 
 import { Task } from './../../models/task.model';//Importamos la interfaz
 
@@ -29,7 +30,18 @@ export class HomeComponent {
     },
   ]);
 
-  filter = signal('all'); //Muestra todas las tareas
+  filter = signal<'all' | 'pending' | 'completed' >('all'); //Muestra las tareas que contengan alguno de esos estados
+  tasksByFilter = computed(() => {
+    const filter = this.filter(); //Leer el estado del filtro actual
+    const tasks = this.tasks(); //Leer el estado de toda la lista de tareas sin filtro
+    if(filter === 'pending'){//Si el estado es 'pending'
+      return tasks.filter(task => !task.completed)//Traer todas las tareas, que no estan completadas
+    }
+    if(filter === 'completed'){//Si el estado es 'completed'
+      return tasks.filter(task => task.completed)//Traer todas las tareas que esten completadas
+    }
+    return tasks;
+  })
 
   //controlador para  crear las nuevas tareas
   newTaskCtrl= new FormControl('',{
@@ -125,7 +137,7 @@ export class HomeComponent {
     }
 
     //Cambiar el estado del filtro
-    changeFilter(filter: string){
+    changeFilter(filter: 'all' | 'pending' | 'completed'){
       this.filter.set(filter);
     }
 }
