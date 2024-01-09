@@ -29,6 +29,8 @@ export class HomeComponent {
     },
   ]);
 
+  filter = signal('all'); //Muestra todas las tareas
+
   //controlador para  crear las nuevas tareas
   newTaskCtrl= new FormControl('',{
     //validaciones
@@ -120,5 +122,10 @@ export class HomeComponent {
           return task;
         })
       })
+    }
+
+    //Cambiar el estado del filtro
+    changeFilter(filter: string){
+      this.filter.set(filter);
     }
 }
