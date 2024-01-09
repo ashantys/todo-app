@@ -1,4 +1,4 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component, Injector, computed, effect, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 
@@ -18,20 +18,10 @@ import { Task } from './../../models/task.model';//Importamos la interfaz
 export class HomeComponent {
 
   tasks = signal<Task[]>([
-    {
-      id: Date.now(),
-      title: 'Create project',
-      completed: false
-    },
-    {
-      id: Date.now(),
-      title: 'Create components',
-      completed: false
-    },
   ]);
 
   filter = signal<'all' | 'pending' | 'completed' >('all'); //Muestra las tareas que contengan alguno de esos estados
-  tasksByFilter = computed(() => {
+  tasksByFilter = computed(() => { //computed, calcula un estado a partir de otro
     const filter = this.filter(); //Leer el estado del filtro actual
     const tasks = this.tasks(); //Leer el estado de toda la lista de tareas sin filtro
     if(filter === 'pending'){//Si el estado es 'pending'
@@ -51,6 +41,27 @@ export class HomeComponent {
       Validators.required,
     ]
   });
+
+  injector = inject(Injector);
+
+  ngOnInit(){// Inicializar nuestro component, para obtener lo que exista en el LocalStorage
+    const storage = localStorage.getItem('tasks'); 
+    if(storage){
+      const tasks = JSON.parse(storage);
+      this.tasks.set(tasks);
+    }
+    this.trackTasks();
+  }
+
+  trackTasks(){
+    //Aqui guardamos los que existe en nuestra lista
+    effect(() => { //effect, vigila cada vez que algo cambia y respecto a eso cambiar algo
+      const tasks = this.tasks();
+      console.log(tasks);
+      localStorage.setItem('tasks', JSON.stringify(tasks));
+      //Ya que nuestro effet no esta dentro de un constructor, debemos de usar un injector
+    }, { injector: this.injector})
+  }
 
   //Controla el input
   changeHandler(){
