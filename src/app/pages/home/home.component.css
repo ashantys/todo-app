@@ -2,6 +2,7 @@
     min-width: 230px;
     max-width: 550px;
     margin: 0 auto;
+    padding: 1rem;
   }
   
   .header {
@@ -33,6 +34,15 @@
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
     overflow: hidden;
   }
+
+  /* For mobile devices */
+@media (max-width: 600px) {
+  .todoapp-wrapper {
+    border-radius: 4px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1), 0 12px 25px 0 rgba(0, 0, 0, 0.05);
+    margin: 1rem;
+  }
+}
   
   .todoapp input::-webkit-input-placeholder {
     font-style: italic;
