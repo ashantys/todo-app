@@ -42,24 +42,23 @@ export class HomeComponent {
     ]
   });
 
-  injector = inject(Injector);
+  injector = inject(Injector); //Contiene las herramientas
 
-  ngOnInit(){// Inicializar nuestro component, para obtener lo que exista en el LocalStorage
+  ngOnInit(){// Revisa si hay alguna tarea en el localStorage
     const storage = localStorage.getItem('tasks'); 
-    if(storage){
+    if(storage){// Si existe alguna, se prepara para usarla
       const tasks = JSON.parse(storage);
       this.tasks.set(tasks);
     }
     this.trackTasks();
   }
 
-  trackTasks(){
-    //Aqui guardamos los que existe en nuestra lista
-    effect(() => { //effect, vigila cada vez que algo cambia y respecto a eso cambiar algo
+  trackTasks(){ //Guarda las tareas en el localStorage cada que hay un cambio
+    effect(() => { //effect, vigila cada vez que algo cambia
       const tasks = this.tasks();
       console.log(tasks);
       localStorage.setItem('tasks', JSON.stringify(tasks));
-      //Ya que nuestro effet no esta dentro de un constructor, debemos de usar un injector
+      //Ya que nuestro effect no esta dentro de un constructor, debemos de usar un injector
     }, { injector: this.injector})
   }
 
